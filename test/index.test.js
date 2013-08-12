@@ -3,7 +3,8 @@ var should = require('should'),
   mwcCore = require('mwc_kernel'),
   config = require('./config.json').development;
 
-
+/*
+// it is not the test for socket.io plugin
 describe('mwc plugin example', function() {
   var MWC;
 
@@ -22,3 +23,4 @@ describe('mwc plugin example', function() {
   });
 
 });
+*/
