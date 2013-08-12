@@ -1,0 +1,26 @@
+{
+  "name": "mwc_plugin_chat",
+  "version": "0.0.1",
+  "description": "mwc chat functionality",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mywebclass/mwc_plugin_chat.git"
+  },
+  "author": "Aldo Nievas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mywebclass/mwc_plugin_chat/issues"
+  },
+  "dependencies": {
+    "mwc_kernel": "git+https://github.com/mywebclass/mwc_kernel.git#master",
+    "mwc_plugin_socket_io":"git+https://github.com/mywebclass/mwc_plugin_socket_io.git"
+  }
+}
