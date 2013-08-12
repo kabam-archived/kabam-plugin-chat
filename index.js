@@ -21,11 +21,30 @@ exports.model = {
 exports.app = function (mwc) {
   console.log('STARTING plugin_chat')
   console.log(mwc.mwc_sio.io);
-
   /*
-  place io logic there
-  make mwcKernel emit events - mwc.emit('eventName',eventObj) for chat events
+   place io logic there
+   make mwcKernel emit events - mwc.emit('eventName',eventObj) for chat events
    */
+
+  mwc.mwc_sio.io.on('newMessage',function(newMessage){
+    mwc.model.ChatMessages.create(newMessage);
+  });
+/*
+//other logic
+  mwc.mwc_sio.io.on('...',function(newMessage){
+     ...
+  });
+ mwc.mwc_sio.io.on('...',function(newMessage){
+ ...
+ });
+ mwc.mwc_sio.io.on('...',function(newMessage){
+ ...
+ });
+ mwc.mwc_sio.io.on('...',function(newMessage){
+ ...
+ });
+
+*/
 
 };
 
