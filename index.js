@@ -50,7 +50,7 @@ exports.app = function (mwc) {
 
 exports.routes = function(mwc){
   mwc.app.get('/',function(request,response){
-    response.sendfile('./index.html');//some html+socket.io file for testing purpose
+    response.sendfile(__dirname+'index.html');//some html+socket.io file for testing purpose
   });
 };
 
