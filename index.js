@@ -1,6 +1,3 @@
-var _         = require ('underscore');
-var userNames = require('./helpers/users').userNames;
-
 exports.name = 'mwc_plugin_chat';
 
 //you need to export mongoose model for chat
@@ -26,7 +23,7 @@ exports.app = function (mwc) {
   var io =  mwc.mwc_sio.io;
 
   var name = userNames.getGuestName();
-  console.log('STARTING plugin_chat')
+  console.log('STARTING plugin_chat');
 
   io.sockets.on('connection', function(socket) {
 
@@ -88,11 +85,8 @@ exports.app = function (mwc) {
 
 };
 
-// Client Side code.
+
 exports.routes = function(mwc){
-  // mwc.app.get('/',function(request,response){
-  //   response.sendfile(__dirname+'index.html');//some html+socket.io file for testing purpose
-  // });
   // Get all Rooms
   mwc.app.get('/rooms',function(request,response) {
     mwc.model.Rooms.find({}, function(err, rooms) {
@@ -102,15 +96,14 @@ exports.routes = function(mwc){
         response.json({ status: 200, rooms: rooms });
       }
     });
-    // response.sendfile(__dirname+'index.html');//some html+socket.io file for testing purpose
   });
 
   // Create Room
   mwc.app.post('/rooms',function(request,response) {
-    if (typeof request.name === 'undefined' || _.isEmpty(request.name)) {
+    if (typeof request.body.name === 'undefined' || !request.body.name) {
       response.json({ status: 400, message: 'Room message is mandatory.' });
     } else {
-      mwc.model.Rooms.create({ name: request.name }, function(err, room) {
+      mwc.model.Rooms.create({ name: request.body.name }, function(err, room) {
         if (err) {
           response.json({ status: 400, message: 'There was an error creating Room.' });
         } else {
@@ -118,9 +111,7 @@ exports.routes = function(mwc){
         }
       });
     }
-    // response.sendfile(__dirname+'index.html');//some html+socket.io file for testing purpose
   });
-
 };
 
 //you need to export listeners for custom events from mwcKernel - so they can be used by application that uses this plugin
