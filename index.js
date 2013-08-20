@@ -1,6 +1,8 @@
+var userNames = require('./helpers/users').userNames;
+
 exports.name = 'mwc_plugin_chat';
 
-//you need to export mongoose model for chat
+  //you need to export mongoose model for chat
 exports.model = {
    'ChatMessages': function (mongoose, config) {
      var ChatMessagesSchema = new mongoose.Schema({
