@@ -1,4 +1,4 @@
-exports.userNames = (function () {
+var users = (function () {
   var names = {};
 
   var claim = function (name) {
@@ -45,4 +45,6 @@ exports.userNames = (function () {
     get: get,
     getGuestName: getGuestName
   };
-}());
+})();
+
+module.exports = users;

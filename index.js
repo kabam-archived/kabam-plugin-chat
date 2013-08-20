@@ -1,4 +1,4 @@
-var userNames = require('./helpers/users').userNames;
+var users = require('./helpers/users');
 
 exports.name = 'mwc_plugin_chat';
 
@@ -24,7 +24,7 @@ exports.model = {
 exports.app = function (mwc) {
   var io =  mwc.mwc_sio.io;
 
-  var name = userNames.getGuestName();
+  var name = users.getGuestName();
   console.log('STARTING plugin_chat');
 
   io.sockets.on('connection', function(socket) {
@@ -32,7 +32,7 @@ exports.app = function (mwc) {
     // send the new user their name and a list of users
     socket.emit('init', {
       name: name,
-      users: userNames.get()
+      users: users.get()
     });
 
     // broadcast a user's message to other users
@@ -45,9 +45,9 @@ exports.app = function (mwc) {
 
     // validate a user's name change, and broadcast it on success
     socket.on('change:name', function (data, fn) {
-      if (userNames.claim(data.name)) {
+      if (users.claim(data.name)) {
         var oldName = name;
-        userNames.free(oldName);
+        users.free(oldName);
         name = data.name;
         socket.broadcast.emit('change:name', {
           oldName: oldName,
@@ -68,7 +68,7 @@ exports.app = function (mwc) {
       socket.broadcast.emit('user:left', {
         name: name
       });
-      userNames.free(name);
+      users.free(name);
     });
 
   });
